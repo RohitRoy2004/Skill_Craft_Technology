@@ -1,2 +1,3 @@
-# -Number-Guessing-Game-
-Description: A simple game where the user guesses a number between 1 and 100
+# Skillcraft Internship Project
+1. Number Guessing Game
+2. Temperature Converter
