@@ -1,67 +1,53 @@
-// Number Guessing Game in C++
+# Number Guessing Game in Python
+# Description: A simple game where the user guesses a number between 1 and 100
 
-// Description: A simple game where the user guesses a number between 1 and 100
+import random   # For generating random numbers
+import time     # For seeding the random number generator
 
-#include <iostream>   // For input and output
-#include <cstdlib>    // For rand() and srand()
-#include <ctime>      // For time()
+# This function runs the guessing game
+def guess_the_number():
+    # Seed the random number generator using current time
+    random.seed(time.time())
 
-using namespace std;
+    # Generate a random number between 1 and 100
+    number_to_guess = random.randint(1, 100)
 
-// This function runs the guessing game
-void guessTheNumber() {
-    //  Seed the random number generator using current time
-    // This ensures a new number every time the program runs
-    srand(time(0));
+    # Initialize variables
+    attempts = 0  # Number of attempts made
 
-    //  Generate a random number between 1 and 100
-    int numberToGuess = rand() % 100 + 1;
+    # Display welcome message
+    print("--------------------------------------------")
+    print(" Welcome to the Number Guessing Game! ")
+    print(" I'm thinking of a number between 1 and 100.")
+    print(" Try to guess it!")
+    print("--------------------------------------------")
 
-    //  Initialize variables
-    int guess;       // User's guess
-    int attempts = 0; // Number of attempts made
+    # Start the guessing loop
+    while True:
+        try:
+            guess = int(input("Enter your guess: "))
+        except ValueError:
+            # Handle invalid input (e.g., letters instead of numbers)
+            print("Invalid input! Please enter a number.")
+            continue  # Go back to start of loop
 
-    //  Display welcome message
-    cout << "--------------------------------------------" << endl;
-    cout << " Welcome to the Number Guessing Game! " << endl;
-    cout << " I'm thinking of a number between 1 and 100." << endl;
-    cout << " Try to guess it!" << endl;
-    cout << "--------------------------------------------" << endl;
+        # Count the attempt
+        attempts += 1
 
-    //  Start the guessing loop
-    while (true) {
-        cout << "Enter your guess: ";
-        cin >> guess;
+        # Check the guess and give feedback
+        if guess < number_to_guess:
+            print("Too low! Try again.")
+        elif guess > number_to_guess:
+            print("Too high! Try again.")
+        else:
+            # Correct guess
+            print("--------------------------------------------")
+            print(" 🎉 Congratulations! You guessed the number! ")
+            print(f" It took you {attempts} attempts.")
+            print("--------------------------------------------")
+            break
 
-        //  Handle invalid input (e.g. letters instead of numbers)
-        if (cin.fail()) {
-            cin.clear();                 // Clear the error flag
-            cin.ignore(10000, '\n');     // Discard the invalid input
-            cout << "Invalid input! Please enter a number." << endl;
-            continue;                    // Go back to start of loop
-        }
-
-        // Count the attempt
-        attempts++;
-
-        // Check the guess and give feedback
-        if (guess < numberToGuess) {
-            cout << "Too low! Try again." << endl;
-        } else if (guess > numberToGuess) {
-            cout << "Too high! Try again." << endl;
-        } else {
-            // Correct guess
-            cout << "--------------------------------------------" << endl;
-            cout << " 🎉 Congratulations! You guessed the number! " << endl;
-            cout << " It took you " << attempts << " attempts." << endl;
-            cout << "--------------------------------------------" << endl;
-            break; 
-        }
-    }
-}
-
-int main() {
-    // Call the game function
-    guessTheNumber();
-    return 0;
-}
+# Main function
+if __name__ == "__main__":
+    # Call the game function
+    guess_the_number()
